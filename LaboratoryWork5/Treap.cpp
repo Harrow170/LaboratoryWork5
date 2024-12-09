@@ -162,3 +162,8 @@ void Delete2Way(Treap* treap, int key)
 		Delete2Way(treap->Root->Right, key);
 	}
 }
+
+void FreeTreap()
+{
+
+}
