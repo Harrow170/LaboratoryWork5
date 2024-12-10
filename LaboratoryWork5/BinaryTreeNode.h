@@ -7,8 +7,8 @@ struct BinaryTreeNode
 	BinaryTreeNode* Right;
 	BinaryTreeNode* Parent;
 
-	BinaryTreeNode(int data, BinaryTreeNode* parent = nullptr)
-		:Data(data), Left(nullptr), Right(nullptr), Parent(parent){}
+	BinaryTreeNode(int data)
+		:Data(data), Left(nullptr), Right(nullptr), Parent(nullptr){}
 };
 
-BinaryTreeNode CreateNode(int data, BinaryTreeNode* parent = nullptr);
+BinaryTreeNode* CreateNode(int data);

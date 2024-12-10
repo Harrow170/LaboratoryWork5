@@ -8,7 +8,7 @@ struct BinaryTree
 	BinaryTree() : Root(nullptr) {}
 };
 
-BinaryTree CreateTree();
+BinaryTree* CreateTree();
 
 void Add(BinaryTreeNode*& node, int value);
 
@@ -21,3 +21,5 @@ BinaryTreeNode* Search(BinaryTreeNode* node, int value);
 BinaryTreeNode* SearchMax(BinaryTreeNode* node);
 
 BinaryTreeNode* SearchMin(BinaryTreeNode* node);
+
+void Free(BinaryTreeNode* node);

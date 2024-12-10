@@ -16,12 +16,14 @@ void Split(TreapNode* node, int key, TreapNode*& left, TreapNode*& right);
 
 TreapNode* Merge(TreapNode* left, TreapNode* right);
 
-void Insert1Way(Treap* treap, int key);
+void InsertUnoptimized(Treap*& treap, int key);
 
-void Insert2Way(Treap* treap, int key);
+void InsertOptimized(Treap*& treap, int key);
 
-void Delete1Way(Treap* treap, int key);
+void DeleteUnoptimized(Treap*& treap, int key);
 
-void Delete2Way(Treap* treap, int key);
+void DeleteOptimized(Treap*& treap, int key);
 
-void FreeTreap();
+void FreeTreap(TreapNode* node);
+
+void FreeTreapWrapper(Treap*& treap);

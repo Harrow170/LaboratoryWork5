@@ -66,9 +66,9 @@ TreapNode* Merge(TreapNode* left, TreapNode* right)
 	return right;
 }
 
-void Insert1Way(Treap* treap, int key)
+void InsertUnoptimized(Treap*& treap, int key)
 {
-	TreapNode* newNode = new TreapNode(key);
+	TreapNode* newNode = CreateTreapNode(key);
 	if (treap->Root == nullptr)
 	{
 		treap->Root = newNode;
@@ -78,33 +78,13 @@ void Insert1Way(Treap* treap, int key)
 	TreapNode* left = nullptr;
 	TreapNode* right = nullptr;
 	Split(treap->Root, key, left, right);
-	if (newNode->Priority > (left ? left->Priority : 0))
-	{
-		newNode->Left = left;
-		newNode->Right = right;
-		treap->Root = newNode;
-	}
-
-	else
-	{
-		if (key <= left->Key)
-		{
-			left->Left = Insert1Way(left->Left, key);
-		}
-
-		else
-		{
-			left->Right = Insert1Way(left->Right, key);
-		}
-
-		treap->Root = Merge(left, right);
-	}
+	treap->Root = Merge(Merge(left, newNode), right);
 }
 
-void Insert2Way(Treap* treap, int key)
+void InsertOptimized(Treap*& treap, int key)
 {
-	TreapNode* newNode = new TreapNode(key);
-	if (treap->Root == nullptr)
+	TreapNode* newNode = CreateTreapNode(key);
+	if(treap->Root == nullptr)
 	{
 		treap->Root = newNode;
 		return;
@@ -118,7 +98,7 @@ void Insert2Way(Treap* treap, int key)
 	treap->Root = newNode;
 }
 
-void Delete1Way(Treap* treap, int key)
+void DeleteUnoptimized(Treap*& treap, int key)
 {
 	if (treap->Root == nullptr)
 	{
@@ -137,33 +117,35 @@ void Delete1Way(Treap* treap, int key)
 	delete midRight;
 }
 
-void Delete2Way(Treap* treap, int key)
+void DeleteOptimized(Treap*& treap, int key)
 {
+	TreapNode* nodeToDelete = Find(treap->Root, key);
 	if (treap->Root == nullptr)
 	{
 		return;
 	}
 
-	if (treap->Root->Key == key)
+	TreapNode* left = nullptr;
+	TreapNode* right = nullptr;
+	Split(treap->Root, key, left, right);
+	delete nodeToDelete;
+	treap->Root = Merge(left, right);
+}
+
+void FreeTreap(TreapNode* node)
+{
+	if (node == nullptr)
 	{
-		TreapNode* temp = Merge(treap->Root->Left, treap->Root->Right);
-		delete treap->Root;
-		treap->Root = temp;
 		return;
 	}
 
-	if (key < treap->Root->Key)
-	{
-		Delete2Way(treap->Root->Left, key);
-	}
-
-	else
-	{
-		Delete2Way(treap->Root->Right, key);
-	}
+	FreeTreap(node->Left);
+	FreeTreap(node->Right);
+	delete node;
 }
 
-void FreeTreap()
+void FreeTreapWrapper(Treap*& treap)
 {
-
+	FreeTreap(treap->Root);
+	delete treap;
 }

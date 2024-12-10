@@ -71,7 +71,7 @@ BinaryTreeNode* Search(BinaryTreeNode* node, int value)
 {
 	if (node == nullptr)
 	{
-		return;
+		return nullptr;
 	}
 
 	if (node->Data == value)
@@ -128,4 +128,15 @@ BinaryTreeNode* SearchMin(BinaryTreeNode* node)
 	}
 
 	return node;
+}
+
+void Free(BinaryTreeNode* node)
+{
+	if (node != nullptr)
+	{
+		Free(node->Left);
+		Free(node->Right);
+		delete node;
+		node = nullptr;
+	}
 }

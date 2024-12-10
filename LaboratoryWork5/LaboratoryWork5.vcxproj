@@ -127,16 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryMenu.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="BinaryTreeNode.cpp" />
+    <ClCompile Include="GetInput.cpp" />
     <ClCompile Include="LaboratoryWork5.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Treap.cpp" />
+    <ClCompile Include="TreapMenu.cpp" />
     <ClCompile Include="TreapNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryMenu.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BinaryTreeNode.h" />
+    <ClInclude Include="GetInput.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Treap.h" />
+    <ClInclude Include="TreapMenu.h" />
     <ClInclude Include="TreapNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,6 @@
 #include "BinaryTreeNode.h"
 
-BinaryTreeNode* CreateNode(int data, BinaryTreeNode* parent = nullptr)
+BinaryTreeNode* CreateNode(int data)
 {
-	return new BinaryTreeNode(data, parent);
+	return new BinaryTreeNode(data);
 }
