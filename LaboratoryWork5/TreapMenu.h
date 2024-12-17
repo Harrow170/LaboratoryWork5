@@ -2,8 +2,6 @@
 #include "Treap.h"
 #include "TreapNode.h"
 
-void DisplayTreap(TreapNode* node);
-
-void DisplayTreapWrapper(Treap* treap);
+void DisplayTreap(TreapNode* node, int indent);
 
 void TreapMenu(Treap* treap);

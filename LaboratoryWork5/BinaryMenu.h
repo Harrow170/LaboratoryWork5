@@ -2,8 +2,6 @@
 #include  "BinaryTreeNode.h"
 #include "BinaryTree.h"
 
-void InOrder(BinaryTreeNode* node);
+void DisplayTree(BinaryTreeNode* node, int indent);
 
-void DisplayTree(const BinaryTree& tree);
-
-void BinaryMenu(BinaryTree& tree);
+void BinaryMenu(BinaryTree* tree);

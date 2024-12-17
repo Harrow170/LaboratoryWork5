@@ -2,5 +2,9 @@
 
 BinaryTreeNode* CreateNode(int data)
 {
-	return new BinaryTreeNode(data);
+	BinaryTreeNode* node = new BinaryTreeNode();
+	node->Data = data;
+	node->Left = nullptr;
+	node->Right = nullptr;
+	return node;
 }

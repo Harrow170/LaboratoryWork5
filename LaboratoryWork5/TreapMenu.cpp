@@ -3,23 +3,40 @@
 #include "TreapMenu.h"
 #include "GetInput.h"
 #include <iostream>
+#include <string>
+#include <exception>
+#include <iomanip>
 
 using namespace std;
 
-void DisplayTreap(TreapNode* node)
+void DisplayTreap(TreapNode* node, int indent)
 {
-	if (node != nullptr)
+	if (node == nullptr)
 	{
-		DisplayTreap(node->Left);
-		cout << node->Key << " ";
-		DisplayTreap(node->Right);
+		return;
 	}
-}
 
-void DisplayTreapWrapper(Treap* treap)
-{
-	DisplayTreap(treap->Root);
-	cout << endl;
+	if (node->Right)
+	{
+		DisplayTreap(node->Right, indent + 4);
+	}
+
+	if (indent)
+	{
+		cout << setw(indent) << ' ';
+	}
+
+	if (node->Right)
+	{
+		cout << " /\n" << setw(indent) << ' ';
+	}
+
+	cout << node->Key << "(" << node->Priority << ")" << endl;
+	if (node->Left)
+	{
+		cout << setw(indent) << ' ' << " \\\n";
+		DisplayTreap(node->Left, indent + 4);
+	}
 }
 
 void TreapMenu(Treap* treap)
@@ -27,7 +44,7 @@ void TreapMenu(Treap* treap)
 	while (true)
 	{
 		cout << "Current treap: " << endl;
-		DisplayTreap(treap->Root);
+		DisplayTreap(treap->Root, 1);
 		cout << endl;
 		int choice = GetInput("Treap menu: \n 1. AddO\n 2. AddUO\n 3. RemoveO\n \
 4. RemoveUO\n 5. Search\n 6/ Split\n 7. merge\n 0. Exit\n Your Input: ");
@@ -49,8 +66,8 @@ void TreapMenu(Treap* treap)
 
 			case 3:
 			{
-				int value = GetInput("Enter value to remove: ");
-				DeleteOptimized(treap, value);
+				int key = GetInput("Enter value to remove: ");
+				DeleteOptimized(treap, key);
 				break;
 			}
 

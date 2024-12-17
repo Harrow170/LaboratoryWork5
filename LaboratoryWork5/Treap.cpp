@@ -51,9 +51,14 @@ void Split(TreapNode* node, int key, TreapNode*& left, TreapNode*& right)
 
 TreapNode* Merge(TreapNode* left, TreapNode* right)
 {
-	if (left == nullptr || right == nullptr)
+	if (left == nullptr)
 	{
-		return left == nullptr ? right : left;
+		return left;
+	}
+
+	if (right == nullptr)
+	{
+		return right;
 	}
 
 	if (left->Priority > right->Priority)
@@ -62,8 +67,11 @@ TreapNode* Merge(TreapNode* left, TreapNode* right)
 		return left;
 	}
 
-	right->Left = Merge(left, right->Left);
-	return right;
+	else
+	{
+		right->Left = Merge(left, right->Left);
+		return right;
+	}
 }
 
 void InsertUnoptimized(Treap*& treap, int key)

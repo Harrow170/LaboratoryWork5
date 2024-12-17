@@ -9,10 +9,13 @@ struct BinaryTree
 };
 
 BinaryTree* CreateTree();
+//void InitializeTree(BinaryTree* tree);
 
-void Add(BinaryTreeNode*& node, int value);
+BinaryTreeNode* Add(BinaryTreeNode* node, int value);
+//void Add(BinaryTreeNode*& node, int value);
 
-BinaryTreeNode* Remove(BinaryTreeNode*& node);
+BinaryTreeNode* Remove(BinaryTreeNode*& node, int value);
+//void Remove(BinaryTreeNode*& node, int value);
 
 int GetCount(BinaryTreeNode* node);
 
