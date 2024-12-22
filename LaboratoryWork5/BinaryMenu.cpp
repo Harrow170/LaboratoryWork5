@@ -43,11 +43,6 @@ void BinaryMenu(BinaryTree* tree)
 {
 	while (true)
 	{
-		if (tree->Root == nullptr)
-		{
-			tree->Root = Add(tree->Root, GetInput("Root value: "));
-		}
-
 		DisplayTree(tree->Root, 1);
 		int choice = GetInput("Tree menu: \n 1. Add\n 2. Remove\n 3. Search\n 4. Max\n \
 5. Min\n 0. Exit\n Your Input; ");
@@ -56,21 +51,21 @@ void BinaryMenu(BinaryTree* tree)
 			case 1:
 			{
 				int value = GetInput("Enter value to add; ");
-				Add(tree->Root, value);
+				Add(tree, value);
 				break;
 			}
 
 			case 2:
 			{
 				int value = GetInput("Enter value to remove: ");
-				Remove(tree->Root, value);
+				Remove(tree, value);
 				break;
 			}
 
 			case 3:
 			{
 				int value = GetInput("Enter value to search: ");
-				if (Search(tree->Root, value))
+				if (Search(tree, value))
 				{
 					cout << "Node found" << endl;
 				}
@@ -85,10 +80,10 @@ void BinaryMenu(BinaryTree* tree)
 
 			case 4:
 			{
-				BinaryTreeNode* maxNode = SearchMax(tree->Root);
-				if (maxNode)
+				BinaryTree* max = SearchMax(tree);
+				if (max)
 				{
-					cout << "Max node: " << maxNode->Data << endl;
+					cout << "Max node: " << max << endl;
 				}
 
 				else
@@ -101,10 +96,10 @@ void BinaryMenu(BinaryTree* tree)
 
 			case 5:
 			{
-				BinaryTreeNode* minNode = SearchMin(tree->Root);
-				if (minNode)
+				BinaryTree* min = SearchMin(tree);
+				if (min)
 				{
-					cout << "Min node: " << minNode->Data << endl;
+					cout << "Min node: " << min << endl;
 				}
 
 				else

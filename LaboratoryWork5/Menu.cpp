@@ -22,11 +22,13 @@ void Menu()
 		case 1:
 		{
 			BinaryMenu(tree);
+			break;
 		}
 
 		case 2:
 		{
 			TreapMenu(treap);
+			break;
 		}
 
 		case 0:

@@ -81,7 +81,7 @@ void TreapMenu(Treap* treap)
 			case 5:
 			{
 				int value = GetInput("Enter value to find: ");
-				if (Find(treap->Root, value) != nullptr)
+				if (Find(treap, value) != nullptr)
 				{
 					cout << "Value: " << value << endl;
 				}

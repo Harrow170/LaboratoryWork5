@@ -1,71 +1,80 @@
 #include "BinaryTree.h"
 #include "BinaryTreeNode.h"
-//#include "BinaryTree.h"
 
 BinaryTree* CreateTree()
 {
-	return new BinaryTree();
+	BinaryTree* tree = new BinaryTree();
+	tree->Root = nullptr;
+	return tree;
 }
 
-/*void InitializeTree(BinaryTree* tree)
+void Add(BinaryTree* tree, int value)
 {
-	tree->Root = nullptr;
-}*/
-
-/*void Add(BinaryTreeNode*& node, int value)
-{
-	if (node == nullptr)
+	if (tree->Root == nullptr)
 	{
-		node = new BinaryTreeNode(value);
+		tree->Root = CreateNode(value);
 		return;
 	}
 
-	if (node->Data > value)
+	BinaryTreeNode* current = tree->Root;
+	BinaryTreeNode* parent = nullptr;
+	while (current != nullptr)
 	{
-		Add(node->Left, value);
+		parent = current;
+		if (value < current->Data)
+		{
+			current = current->Left;
+		}
+
+		else
+		{
+			current = current->Right;
+		}
+	}
+
+	if (value < parent->Data)
+	{
+		parent->Left = CreateNode(value);
 	}
 
 	else
 	{
-		Add(node->Right, value);
+		parent->Right = CreateNode(value);
 	}
-}*/
-
-BinaryTreeNode* Add(BinaryTree* tree, int value)
-{
-	if (tree == nullptr)
-	{
-		return CreateNode(value);
-	}
-
-	if (value < tree->Root)
-	{
-		node->Left = Add(node->Left, value);
-	}
-
-	else
-	{
-		node->Right = Add(node->Right, value);
-	}
-
-	return node;
 }
 
-BinaryTreeNode* Remove(BinaryTreeNode*& node, int value)
+BinaryTree* Remove(BinaryTree* tree, int value)
+{
+	if (tree->Root == nullptr)
+	{
+		return nullptr;
+	}
+
+	tree->Root = RemoveWrapper(tree->Root, value);
+	if (tree->Root == nullptr)
+	{
+		//delete tree;
+		return nullptr;
+	}
+
+	return tree;
+}
+
+BinaryTreeNode* RemoveWrapper(BinaryTreeNode* node, int value)
 {
 	if (node == nullptr)
 	{
 		return nullptr;
 	}
 
-	if (node->Data > value)
+	if (value < node->Data)
 	{
-		node->Left = Remove(node->Left, value);
+		node->Left = RemoveWrapper(node->Left, value);
 	}
 
 	else if (value > node->Data)
 	{
-		node->Right = Remove(node->Right, value);
+		node->Right = RemoveWrapper(node->Right, value);
 	}
 
 	else
@@ -74,95 +83,52 @@ BinaryTreeNode* Remove(BinaryTreeNode*& node, int value)
 		{
 			BinaryTreeNode* temp = node->Right;
 			delete node;
-			delete temp;
+			return temp;
 		}
 
 		else if (node->Right == nullptr)
 		{
 			BinaryTreeNode* temp = node->Left;
 			delete node;
-			delete temp;
+			return temp;
 		}
 
-		BinaryTreeNode* temp = SearchMin(node->Right);
+		BinaryTreeNode* temp = SearchMinWrapper(node->Right);
 		node->Data = temp->Data;
-		node->Right = Remove(node->Right, temp->Data);
+		node->Right = RemoveWrapper(node->Right, temp->Data);
+		
 	}
 
 	return node;
 }
 
-/*void Remove(BinaryTreeNode*& node, const int value)
+BinaryTreeNode* Search(BinaryTree* tree, int value)
 {
-	if (node == nullptr)
-	{
-		return;
-	}
-
-	if (value < node->Data)
-	{
-		Remove(node->Left, value);
-	}
-
-	else if (value > node->Data)
-	{
-		Remove(node->Right, value);
-	}
-
-	else if (node->Left != nullptr && node->Right != nullptr)
-	{
-		node->Data = SearchMin(node->Right)->Data;
-		Remove(node->Right, node->Data);
-	}
-	
-	else
-	{
-		BinaryTreeNode* current = nullptr;
-		if (node->Left != nullptr)
-		{
-			current = node;
-			node = current->Left;
-			delete current;
-		}
-
-		else if (node->Right != nullptr)
-		{
-			current = node;
-			node = current->Right;
-			delete current;
-		}
-
-		else
-		{
-			delete node;
-			node = nullptr;
-		}
-
-		return;
-	}
-}*/
-
-BinaryTreeNode* Search(BinaryTreeNode* node, int value)
-{
-	if (node == nullptr)
+	if (tree == nullptr)
 	{
 		return nullptr;
 	}
 
-	if (node->Data == value)
+	BinaryTreeNode* current = tree->Root;
+	while (current != nullptr)
 	{
-		return node;
+		if (current->Data == value)
+		{
+			return current;
+		}
+
+		else if (value < current->Data)
+		{
+			current = current->Left;
+		}
+
+		else
+		{
+			current = current->Right;
+		}
 	}
 
-	if (node->Data > value)
-	{
-		return Search(node->Left, value);
-	}
-
-	else
-	{
-		return Search(node->Right, value);
-	}
+	return nullptr;
 }
 
 int GetCount(BinaryTreeNode* node)
@@ -175,22 +141,43 @@ int GetCount(BinaryTreeNode* node)
 	return GetCount(node->Left) + GetCount(node->Right) + 1;
 }
 
-BinaryTreeNode* SearchMax(BinaryTreeNode* node)
+BinaryTree* SearchMax(BinaryTree* tree)
 {
-	if (node == nullptr)
+	if (tree == nullptr || tree->Root == nullptr)
 	{
 		return nullptr;
 	}
 
-	while (node->Right != nullptr)
+	BinaryTreeNode* current = tree->Root;
+	while (current->Right != nullptr)
 	{
-		node = node->Right;
+		current = current->Right;
 	}
 
-	return node;
+	BinaryTree* max = CreateTree();
+	max->Root = current;
+	return max;
 }
 
-BinaryTreeNode* SearchMin(BinaryTreeNode* node)
+BinaryTree* SearchMin(BinaryTree* tree)
+{
+	if (tree->Root == nullptr || tree == nullptr)
+	{
+		return nullptr;
+	}
+
+	BinaryTreeNode* current = tree->Root;
+	while (current->Left != nullptr)
+	{
+		current = current->Left;
+	}
+
+	BinaryTree* min = CreateTree();
+	min->Root = current;
+	return min;
+}
+
+BinaryTreeNode* SearchMinWrapper(BinaryTreeNode* node)
 {
 	if (node == nullptr)
 	{
@@ -214,4 +201,15 @@ void Free(BinaryTreeNode* node)
 		delete node;
 		node = nullptr;
 	}
+}
+
+void FreeTree(BinaryTree* tree)
+{
+	if (tree == nullptr)
+	{
+		return;
+	}
+
+	Free(tree->Root);
+	delete tree;
 }

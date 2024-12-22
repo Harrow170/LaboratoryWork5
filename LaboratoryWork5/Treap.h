@@ -10,19 +10,19 @@ struct Treap
 
 Treap* CreateTreap();
 
-TreapNode* Find(TreapNode* node, int value);
+TreapNode* Find(Treap* treap, int value);
 
 void Split(TreapNode* node, int key, TreapNode*& left, TreapNode*& right);
 
 TreapNode* Merge(TreapNode* left, TreapNode* right);
 
-void InsertUnoptimized(Treap*& treap, int key);
+Treap* InsertUnoptimized(Treap* treap, int key);
 
-void InsertOptimized(Treap*& treap, int key);
+Treap* InsertOptimized(Treap* treap, int key);
 
-void DeleteUnoptimized(Treap*& treap, int key);
+Treap* DeleteUnoptimized(Treap* treap, int key);
 
-void DeleteOptimized(Treap*& treap, int key);
+Treap* DeleteOptimized(Treap* treap, int key);
 
 void FreeTreap(TreapNode* node);
 
