@@ -19,18 +19,42 @@ Treap* CreateTreap();
 //! \param value of element
 TreapNode* Find(Treap* treap, int value);
 
+//! \brief split treap
+//! \param pointer to treap node
+//! \param key of element
+//! \param pointer to left
+//! \param pointer to right
 void Split(TreapNode* node, int key, TreapNode*& left, TreapNode*& right);
 
+//! \brief merge treap
+//! \param pointer left
+//! \param pointer right
 TreapNode* Merge(TreapNode* left, TreapNode* right);
 
+//! \brief insert unoptimized
+//! \param pointer to treap
+//! \param key of element
 void InsertUnoptimized(Treap* treap, int key);
 
+//! \brief insert optimized
+//! \param pointer to treap
+//! \param key of element
 void InsertOptimized(Treap* treap, int key);
 
+//! \brief delete unoptimized
+//! \param pointer to treap
+//! \param key of element
 void DeleteUnoptimized(Treap* treap, int key);
 
+//! \brief delete optimized
+//! \param pointer to treap
+//! \param key of element
 void DeleteOptimized(Treap* treap, int key);
 
+//! \brief free treap node
+//! \param pointer to treap node
 void FreeTreap(TreapNode* node);
 
+//! \brief free wrapper
+//! \param pointer ro treap
 void FreeTreapWrapper(Treap*& treap);

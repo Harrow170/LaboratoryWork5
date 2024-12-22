@@ -55,14 +55,9 @@ void Split(TreapNode* node, int key, TreapNode*& left, TreapNode*& right)
 
 TreapNode* Merge(TreapNode* left, TreapNode* right)
 {
-	if (left == nullptr)
+	if (left == nullptr || right == nullptr)
 	{
-		return left;
-	}
-
-	if (right == nullptr)
-	{
-		return right;
+		return left == nullptr ? right : left;
 	}
 
 	if (left->Priority > right->Priority)
