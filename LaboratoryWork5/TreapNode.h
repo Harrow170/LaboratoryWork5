@@ -5,11 +5,11 @@ struct TreapNode
 {
 	int Key;
 	int Priority;
-	int Value;
+	//int Value;
 	TreapNode* Left;
 	TreapNode* Right;
 
-	TreapNode(int key) : Key(key), Priority(rand()), Value(rand()), Left(nullptr), Right(nullptr) {}
+	//TreapNode(int key) : Key(key), Priority(rand()), Value(rand()), Left(nullptr), Right(nullptr) {}
 };
 
 TreapNode* CreateTreapNode(int key);

@@ -2,5 +2,10 @@
 
 TreapNode* CreateTreapNode(int key)
 {
-	return new TreapNode(key);
+	TreapNode* node = new TreapNode;
+	node->Key = key;
+	node->Priority = rand();
+	node->Left = nullptr;
+	node->Right = nullptr;
+	return node;
 }

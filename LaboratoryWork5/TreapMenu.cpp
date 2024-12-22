@@ -41,6 +41,7 @@ void DisplayTreap(TreapNode* node, int indent)
 
 void TreapMenu(Treap* treap)
 {
+	//Treap* treap = CreateTreap();
 	while (true)
 	{
 		cout << "Current treap: " << endl;

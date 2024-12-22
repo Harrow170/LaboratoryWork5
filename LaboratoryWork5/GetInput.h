@@ -5,4 +5,6 @@
 
 using namespace std;
 
+//! \brief to get values
+//! \param to write strings
 int GetInput(const string& prompt);
