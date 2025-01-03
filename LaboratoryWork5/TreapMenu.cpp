@@ -6,11 +6,13 @@
 #include <string>
 #include <exception>
 #include <iomanip>
+#include "Space.h"
 
 using namespace std;
 
 void DisplayTreap(TreapNode* node, int indent)
 {
+	//const int space = 4;
 	if (node == nullptr)
 	{
 		return;
@@ -18,7 +20,8 @@ void DisplayTreap(TreapNode* node, int indent)
 
 	if (node->Right)
 	{
-		DisplayTreap(node->Right, indent + 4);
+		//TODO: const
+		DisplayTreap(node->Right, indent + Space);
 	}
 
 	if (indent)
@@ -35,7 +38,7 @@ void DisplayTreap(TreapNode* node, int indent)
 	if (node->Left)
 	{
 		cout << setw(indent) << ' ' << " \\\n";
-		DisplayTreap(node->Left, indent + 4);
+		DisplayTreap(node->Left, indent + Space);
 	}
 }
 
@@ -68,14 +71,29 @@ void TreapMenu(Treap* treap)
 			case 3:
 			{
 				int key = GetInput("Enter value to remove: ");
-				DeleteOptimized(treap, key);
+				if (Find(treap, key))
+				{
+					DeleteOptimized(treap, key);
+				}
+				else
+				{
+					cout << "Try again " << endl;
+				}
+
 				break;
 			}
 
 			case 4:
 			{
 				int value = GetInput("Enter value to remove: ");
-				DeleteUnoptimized(treap, value);
+				if (Find(treap, value))
+				{
+					DeleteUnoptimized(treap, value);
+				}
+				else
+				{
+					cout << "Try again " << endl;
+				}
 				break;
 			}
 

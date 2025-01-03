@@ -116,12 +116,10 @@ BinaryTreeNode* Search(BinaryTree* tree, int value)
 		{
 			return current;
 		}
-
 		else if (value < current->Data)
 		{
 			current = current->Left;
 		}
-
 		else
 		{
 			current = current->Right;

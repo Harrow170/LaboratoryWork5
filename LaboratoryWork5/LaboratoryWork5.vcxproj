@@ -143,6 +143,7 @@
     <ClInclude Include="BinaryTreeNode.h" />
     <ClInclude Include="GetInput.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Space.h" />
     <ClInclude Include="Treap.h" />
     <ClInclude Include="TreapMenu.h" />
     <ClInclude Include="TreapNode.h" />

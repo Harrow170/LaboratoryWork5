@@ -19,22 +19,23 @@ void Menu()
 		int choice = GetInput("Menu: \n 1. Binary tree\n 2. Treap\n 0. Exit\n Ypur Input: ");
 		switch (choice)
 		{
-		case 1:
-		{
-			BinaryMenu(tree);
-			break;
-		}
+				//TODO:
+			case 1:
+			{
+				BinaryMenu(tree);
+				break;
+			}
 
-		case 2:
-		{
-			TreapMenu(treap);
-			break;
-		}
+			case 2:
+			{
+				TreapMenu(treap);
+				break;
+			}
 
-		case 0:
-			return;
-		default:
-			cout << "Error" << endl;
+			case 0:
+				return;
+			default:
+				cout << "Error" << endl;
 		}
 	}
 }

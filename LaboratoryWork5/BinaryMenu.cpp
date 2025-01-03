@@ -6,11 +6,13 @@
 #include <string>
 #include <exception>
 #include <iomanip>
+#include "Space.h"
 
 using namespace std;
 
 void DisplayTree(BinaryTreeNode* node, int indent)
 {
+	//const int space = 4;
 	if (node == nullptr)
 	{
 		return;
@@ -18,7 +20,7 @@ void DisplayTree(BinaryTreeNode* node, int indent)
 
 	if (node->Right)
 	{
-		DisplayTree(node->Right, indent + 4);
+		DisplayTree(node->Right, indent + Space);
 	}
 
 	if (indent)
@@ -35,7 +37,7 @@ void DisplayTree(BinaryTreeNode* node, int indent)
 	if (node->Left)
 	{
 		cout << setw(indent) << ' ' << "\\\n";
-		DisplayTree(node->Left, indent + 4);
+		DisplayTree(node->Left, indent + Space);
 	}
 }
 
@@ -58,7 +60,14 @@ void BinaryMenu(BinaryTree* tree)
 			case 2:
 			{
 				int value = GetInput("Enter value to remove: ");
-				Remove(tree, value);
+				if (Search(tree, value))
+				{
+					Remove(tree, value);
+				}
+				else
+				{
+					cout << "You fool? No such element " << endl;
+				}
 				break;
 			}
 
@@ -83,7 +92,7 @@ void BinaryMenu(BinaryTree* tree)
 				BinaryTree* max = SearchMax(tree);
 				if (max)
 				{
-					cout << "Max node: " << max << endl;
+					cout << "Max node: " << max->Root->Data << endl;
 				}
 
 				else
@@ -99,7 +108,7 @@ void BinaryMenu(BinaryTree* tree)
 				BinaryTree* min = SearchMin(tree);
 				if (min)
 				{
-					cout << "Min node: " << min << endl;
+					cout << "Min node: " << min->Root->Data << endl;
 				}
 
 				else
